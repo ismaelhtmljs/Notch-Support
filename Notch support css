@@ -1,0 +1,117 @@
+/**
+ * Complete Notch Support System
+ * v1.0.0
+ * 
+ * Un sistema completo para manejar notch, punch-hole y dynamic island
+ * en dispositivos móviles modernos.
+ * 
+ * Autor: @ismaelxd74
+ * GitHub: https://github.com/ismaelxd74
+ * CSS
+ */
+
+/* --------------------
+ * Variables Globales
+ * ------------------- */
+:root {
+    --notch-top: env(safe-area-inset-top);
+    --notch-right: env(safe-area-inset-right);
+    --notch-bottom: env(safe-area-inset-bottom);
+    --notch-left: env(safe-area-inset-left);
+}
+
+/* --------------------
+ * Soporte Universal
+ * ------------------- */
+@supports (padding-top: env(safe-area-inset-top)) {
+    /* Contenedores Base */
+    .container-safe,
+    .section-safe,
+    .main-safe {
+        padding-top: env(safe-area-inset-top);
+        padding-right: env(safe-area-inset-right);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        min-height: calc(100vh - env(safe-area-inset-top));
+    }
+
+    /* Headers y Navigation */
+    .header-safe {
+        padding-top: env(safe-area-inset-top);
+        min-height: calc(60px + env(safe-area-inset-top));
+    }
+
+    /* Bottom Navigation */
+    .nav-bottom-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+        min-height: calc(50px + env(safe-area-inset-bottom));
+    }
+}
+
+/* --------------------
+ * Media Queries
+ * ------------------- */
+/* Portrait Mode */
+@media screen and (orientation: portrait) {
+    .container-safe {
+        padding-top: max(env(safe-area-inset-top), 20px);
+    }
+}
+
+/* Landscape Mode */
+@media screen and (orientation: landscape) {
+    .container-safe {
+        min-height: 100vh;
+        padding: env(safe-area-inset-top) 
+                env(safe-area-inset-right) 
+                env(safe-area-inset-bottom) 
+                env(safe-area-inset-left);
+    }
+}
+
+/* --------------------
+ * Utilidades
+ * ------------------- */
+/* Márgenes Seguros */
+.mt-safe { margin-top: env(safe-area-inset-top) !important; }
+.mr-safe { margin-right: env(safe-area-inset-right) !important; }
+.mb-safe { margin-bottom: env(safe-area-inset-bottom) !important; }
+.ml-safe { margin-left: env(safe-area-inset-left) !important; }
+
+/* Padding Seguros */
+.pt-safe { padding-top: env(safe-area-inset-top) !important; }
+.pr-safe { padding-right: env(safe-area-inset-right) !important; }
+.pb-safe { padding-bottom: env(safe-area-inset-bottom) !important; }
+.pl-safe { padding-left: env(safe-area-inset-left) !important; }
+
+/* Contenido Seguro */
+.content-safe {
+    margin: var(--notch-top) var(--notch-right) var(--notch-bottom) var(--notch-left);
+}
+
+/* --------------------
+ * Ejemplos de Uso
+ * ------------------- */
+/*
+ * 1. Contenedor básico:
+ * <div class="container-safe">...</div>
+ *
+ * 2. Header con notch:
+ * <header class="header-safe">...</header>
+ *
+ * 3. Navegación inferior:
+ * <nav class="nav-bottom-safe">...</nav>
+ *
+ * 4. Contenido con márgenes seguros:
+ * <div class="content-safe">...</div>
+ */
+
+/* --------------------
+ * Notas de Compatibilidad
+ * ------------------- */
+/*
+ * - iOS: iPhone X y posteriores
+ * - Android: Dispositivos con notch/punch-hole
+ * - PWA: Aplicaciones web progresivas
+ * - Browsers: Safari, Chrome, Firefox, Edge
+ */
